@@ -1,4 +1,5 @@
 // Gameboard Object
+
 /*function Gameboard() {
     const fields = 9;
     const board = [];
@@ -21,7 +22,15 @@ function playerCreator(name, token, selection) {
         token: token,
         selection: selection,
         winner() {
-            if (this.selection return(`${this.name} wins!`);
+            winningNumbers =  ["123", "456","789","147","258","369","159","753"];
+            sortedSelection = selection.split("").sort().join("");
+            console.log(sortedSelection);
+
+            for (let i = 0; i < winningNumbers.length; i++) {
+                if (sortedSelection.includes(winningNumbers[i]) === true) {
+                    return(`${this.name} wins!`);
+                }
+            }
         }
     }
 }
@@ -30,9 +39,10 @@ function playerCreator(name, token, selection) {
 function gameLoop() {
 
     //Create players with creator
-    let player1 = playerCreator("playerOne", "X", 123);
+    let player1 = playerCreator("playerOne", "X", "6217");
     let player2 = playerCreator("playerTwo", "O", 459);
     
+
     console.log(player1.winner());
 
     let userInput = 123;
