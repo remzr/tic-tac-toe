@@ -15,14 +15,30 @@ function Cell(number) {
     let value = number;
     return value;
 };*/    
-
+function playerCreator(name, token, selection) {
+    return {
+        name: name,
+        token: token,
+        selection: selection,
+        winner() {
+            if (this.selection return(`${this.name} wins!`);
+        }
+    }
+}
 
 // Gameflow Object
 function gameLoop() {
-//    const fieldAmount = Gameboard();
+
+    //Create players with creator
+    let player1 = playerCreator("playerOne", "X", 123);
+    let player2 = playerCreator("playerTwo", "O", 459);
     
-    let userInput = 0;
-    let turn = 0;
+    console.log(player1.winner());
+
+    let userInput = 123;
+    
+    // Create turn variable to count turns
+    let turn = 1;
 
         for (let i = 1; i < 9; i++) {
         if (userInput == 123||
@@ -33,7 +49,7 @@ function gameLoop() {
             userInput == 369||
             userInput == 159||
             userInput == 753){
-            console.log("User wins:" + userInput);
+//            console.log("User wins:" + userInput);
         } else if (turn >= 9) {
             console.log("Draw");
         } else if (turn < 9) {
