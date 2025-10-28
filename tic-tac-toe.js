@@ -1,21 +1,19 @@
 // Gameboard Object
+function Gameboard() {
+    return {
+        fields: 9,
+        board: [],
+        cellCreator(token) {
+            for (let i = 1; i <= this.fields; i++) {
+                let cell = {
+                    token: "",
+                };
+                this.board.push(cell);
+            }
+        }
+    }
+};
 
-/*function Gameboard() {
-    const fields = 9;
-    const board = [];
-
-/*    //Create cells based on field value (9)
-    for (let i=0; i < fields; i++) {
-        board[i].push(Cell(i));
-    }; 
-    return fields;
-};*/
-
-/* Cell Object
-function Cell(number) {
-    let value = number;
-    return value;
-};*/    
 function playerCreator(name, token) {
     return {
         name: name,
@@ -42,8 +40,13 @@ function playerCreator(name, token) {
     }
 }
 
-// Gameflow Object
 function gameLoop() {
+    
+    //Create gameboard
+    let sessionGameboard = Gameboard();
+    sessionGameboard.cellCreator();
+
+    console.log(sessionGameboard);
 
     //Create players with creator
     let playerOne = playerCreator("playerOne", "X");
