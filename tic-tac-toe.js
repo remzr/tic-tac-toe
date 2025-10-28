@@ -20,8 +20,9 @@ function playerCreator(name, token) {
     return {
         name: name,
         token: token,
+        isWinner: false,
         selector() {
-            this.selection = prompt(`${name} picks a Number:`).toString;
+            this.selection = this.selection + prompt(`${name} picks a Number:`);
         },
         winner() {
             winningNumbers = ["123", "456","789","147","258","369","159","753"];
@@ -33,7 +34,7 @@ function playerCreator(name, token) {
 
                 for (let i = 0; i < winningNumbers.length; i++) {
                     if (sortedSelection.includes(winningNumbers[i]) === true) {
-                        this.isWinner(true);
+                        this.isWinner = true;
                     }
                 }
             }
@@ -53,20 +54,28 @@ function gameLoop() {
 
     //Gameloop
     do {
+        playerOne.winner();
+        playerTwo.winner();
+
         if (playerOne.isWinner == true) {
             console.log("Player 1 wins");
-        } else if (playerCreator.isWinner == true) {
+
+        } else if (playerTwo.isWinner == true) {
             console.log("Player 2 wins");
-        } else if (turn >=9) {
+
+        } else if (turn == 9) {
             console.log("Its a draw!");
+
         } else if (turn % 2 != 0) {
             playerOne.selector();
+            console.log(playerOne.selection);
+
         } else {
             playerTwo.selector();
         }
         turn++;
         }
-    while (turn < 9);
+    while (turn <= 10);
 } 
 
 gameLoop();
