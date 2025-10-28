@@ -16,19 +16,25 @@ function Cell(number) {
     let value = number;
     return value;
 };*/    
-function playerCreator(name, token, selection) {
+function playerCreator(name, token) {
     return {
         name: name,
         token: token,
-        selection: selection + prompt(`${name} picks a Number:`),
+        selector() {
+            this.selection = prompt(`${name} picks a Number:`).toString;
+        },
         winner() {
-            winningNumbers =  ["123", "456","789","147","258","369","159","753"];
-            sortedSelection = selection.split("").sort().join("");
-            console.log(sortedSelection);
+            winningNumbers = ["123", "456","789","147","258","369","159","753"];
+            let sortedSelection = this.selection
 
-            for (let i = 0; i < winningNumbers.length; i++) {
-                if (sortedSelection.includes(winningNumbers[i]) === true) {
-                    return(`${name} wins!`);
+            if (sortedSelection != undefined && sortedSelection != null) {
+
+                sortedSelection = sortedSelection.split("").sort().join("");
+
+                for (let i = 0; i < winningNumbers.length; i++) {
+                    if (sortedSelection.includes(winningNumbers[i]) === true) {
+                        this.isWinner(true);
+                    }
                 }
             }
         }
@@ -47,21 +53,20 @@ function gameLoop() {
 
     //Gameloop
     do {
-        if (playerOne.winner != undefined) {
-            console.log(playerOne.winner);
-        } else if (playerCreator.winner != undefined) {
-            console.log(playerTwo.winner);
+        if (playerOne.isWinner == true) {
+            console.log("Player 1 wins");
+        } else if (playerCreator.isWinner == true) {
+            console.log("Player 2 wins");
         } else if (turn >=9) {
             console.log("Its a draw!");
         } else if (turn % 2 != 0) {
-            playerOne.selection;
+            playerOne.selector();
         } else {
-            playerTwo.selection;
+            playerTwo.selector();
         }
         turn++;
         }
-    while (turn > 9);
-
+    while (turn < 9);
 } 
 
 gameLoop();
