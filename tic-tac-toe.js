@@ -2,16 +2,22 @@
 let gameboard = [];
 let playerTurn = 1;
 
+//Create players
+let playerOne = playerCreator("playerOne", "X");
+let playerTwo = playerCreator("playerTwo", "O");
+
+createGameboard();
+
 //Onclick function
 function clickCell(value) {
     cellValue = value;
 
     switch (playerTurn) {
         case 1:
-            playerOne.selector();
+            playerOne.selector(value);
             break;
         case 2:
-            playerTwo.selector();
+            playerTwo.selector(value);
             break;
     }
 }
@@ -48,46 +54,44 @@ function playerCreator(name, token) {
         name: name,
         token: token,
         isWinner: false,
-        selector() {
+        selection: "",
+        selector(value) {
+            this.selection = this.selection + value.toString();
             
+            const cell = document.querySelector(`#cell${value}`);
+
+            //console.log(value +" "+ this.token +" "+ this.selection);
+            //Alert if winning move
+            this.winner();
             
+            //Change turns
+            if (playerTurn == 1) {
+                playerTurn = 2
+            } else {
+                playerTurn = 1
+            };
+            
+
+
             //this.selection = this.selection + prompt(`${name} picks a Number:`);
         },
         winner() {
             winningNumbers = ["123", "456","789","147","258","369","159","753"];
             let sortedSelection = this.selection
-
+            console.log(sortedSelection);
             if (sortedSelection != undefined && sortedSelection != null) {
 
                 sortedSelection = sortedSelection.split("").sort().join("");
 
                 for (let i = 0; i < winningNumbers.length; i++) {
                     if (sortedSelection.includes(winningNumbers[i]) === true) {
-                        this.isWinner = true;
+                        alert(`${this.name} won the game!`);
                     }
                 }
             }
         }
     }
 }
-
-function gameLoop() {
-    console.log(turn);
-
-    if (turn = undefined) {
-        //Create gameboard
-        createGameboard();
-
-        //Create players with creator
-        let playerOne = playerCreator("playerOne", "X");
-        let playerTwo = playerCreator("playerTwo", "O");
-        
-        // Create turn variable to count turns
-        let turn = 1;
-    }
-}
-
-gameLoop();
 
 
 
