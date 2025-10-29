@@ -14,19 +14,19 @@ function createGameboard() {
         };
         gameboard.push(cell);
     }
-    updateGameboard();
+    populateGameboard();
 }
 
-//Call to update gameboard state
-function updateGameboard() {
+//Populate gameboard with cells
+function populateGameboard() {
     const gameCanvas = document.querySelector(".gameCanvas");
 
-    for (let i = 1; i < gameboard.length; i++) {
-        gameCanvas.insertAdjacentHTML("beforeend", `<div class="cell" id="${gameboard[i].id}" value="${gameboard[i].value}">${gameboard[i].token}</div>`);
+    if (setting = "first") {
+        for (let i = 1; i < gameboard.length; i++) {
+            gameCanvas.insertAdjacentHTML("beforeend", `<div class="cell" id="${gameboard[i].id}" value="${gameboard[i].value}">${gameboard[i].token}</div>`);
+        }
     }
 }
-
-
 
 function playerCreator(name, token) {
     return {
