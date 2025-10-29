@@ -2,3 +2,27 @@ h1 {
     font-family: Arial, Helvetica, sans-serif;
     color: midnightblue;
 }
+
+.gameCanvas {
+    background-color: brown;
+    height: 600px;
+    width: 600px;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-rows: 1fr 1fr 1fr;
+    border: solid 1px brown;
+    gap: 1px;
+}
+
+.cell {
+    background-color: antiquewhite;
+    width: 1fr;
+    height: 1fr;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: monospace;
+    font-size: 3rem;
+    font-weight: 100;
+    color: brown;
+}
