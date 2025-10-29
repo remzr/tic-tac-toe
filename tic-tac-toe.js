@@ -56,9 +56,13 @@ function playerCreator(name, token) {
         isWinner: false,
         selection: "",
         selector(value) {
+            //Add value to selection
             this.selection = this.selection + value.toString();
             
-            const cell = document.querySelector(`#cell${value}`);
+            //Change cell state with player token
+            let cell = document.querySelector(`#cell${value}`);
+
+            cell.innerText = this.token;
 
             //console.log(value +" "+ this.token +" "+ this.selection);
             //Alert if winning move
@@ -70,10 +74,6 @@ function playerCreator(name, token) {
             } else {
                 playerTurn = 1
             };
-            
-
-
-            //this.selection = this.selection + prompt(`${name} picks a Number:`);
         },
         winner() {
             winningNumbers = ["123", "456","789","147","258","369","159","753"];
