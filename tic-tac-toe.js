@@ -1,18 +1,32 @@
-// Gameboard Object
-function Gameboard() {
-    return {
-        fields: 9,
-        board: [],
-        cellCreator(token) {
-            for (let i = 1; i <= this.fields; i++) {
-                let cell = {
-                    token: "",
-                };
-                this.board.push(cell);
-            }
-        }
+//Global gameboard array
+let gameboard = [];
+
+//Create gameboard and fill it with cells
+function createGameboard() {
+    let fields = 9;
+
+    //Fill gameboard array with cell object
+    for (let i = 0; i <= fields; i++) {
+        let cell = {
+            token: "",
+            value: i,
+            id: "cell" + i,
+        };
+        gameboard.push(cell);
     }
-};
+    updateGameboard();
+}
+
+//Call to update gameboard state
+function updateGameboard() {
+    const gameCanvas = document.querySelector(".gameCanvas");
+
+    for (let i = 1; i < gameboard.length; i++) {
+        gameCanvas.insertAdjacentHTML("beforeend", `<div class="cell" id="${gameboard[i].id}" value="${gameboard[i].value}">${gameboard[i].token}</div>`);
+    }
+}
+
+
 
 function playerCreator(name, token) {
     return {
@@ -43,10 +57,7 @@ function playerCreator(name, token) {
 function gameLoop() {
     
     //Create gameboard
-    let sessionGameboard = Gameboard();
-    sessionGameboard.cellCreator();
-
-    console.log(sessionGameboard);
+    createGameboard();
 
     //Create players with creator
     let playerOne = playerCreator("playerOne", "X");
